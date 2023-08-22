@@ -8,6 +8,7 @@ public class GamePanel : BaseScreen
     public TextMeshProUGUI levelNameText;
     public TextMeshProUGUI moveLeftText;
     public TextMeshProUGUI scoreText;
+    public ScoreMeter scoreMeter;
 
     public override void Init()
     {
@@ -20,10 +21,16 @@ public class GamePanel : BaseScreen
         }
     }
 
+    public override void Show(object data)
+    {
+        base.Show(data);
+    }
+
     private void Start()
     {
         scoreText.text = ScoreManager.Instance.CurrentScore.ToString();
-        moveLeftText.text = GameManager.Instance.movesLeft.ToString();
+        moveLeftText.text = LevelGoalScore.Instance.moveLeft.ToString();
+        scoreMeter.SetupStars();
     }
 
     private void OnDestroy()

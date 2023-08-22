@@ -384,12 +384,11 @@ public class Board : MonoBehaviour
                     {
                         if (GameManager.HasInstance && ListenerManager.HasInstance)
                         {
-                            GameManager.Instance.movesLeft--;
-                            ListenerManager.Instance.BroadCast(ListenType.UPDATECOUNTMOVE, GameManager.Instance.movesLeft);
+                            LevelGoalScore.Instance.moveLeft--;
+                            ListenerManager.Instance.BroadCast(ListenType.UPDATECOUNTMOVE, LevelGoalScore.Instance.moveLeft);
 
-                            if(GameManager.Instance.movesLeft == 0)
+                            if(LevelGoalScore.Instance.moveLeft == 0)
                             {
-                                AudioManager.Instance.PlaySE(AUDIO.SE_LOSE);
                                 GameManager.Instance.EndGame();
                                 if (UIManager.HasInstance && GameManager.Instance.IsGameOver)
                                 {
@@ -712,8 +711,11 @@ public class Board : MonoBehaviour
                 {
                     bonus = 20;
                 }
-
-                piece.ScorePoints(scoreMultiplier, bonus);
+                if (ScoreManager.HasInstance)
+                {
+                    ScoreManager.Instance.ScorePoint(piece, scoreMultiplier, bonus);
+                }
+                //piece.ScorePoints(scoreMultiplier, bonus);
 
                 if(EffectManager.HasInstance)
                 {

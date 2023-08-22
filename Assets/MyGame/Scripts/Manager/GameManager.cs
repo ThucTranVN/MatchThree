@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : BaseManager<GameManager>
 {
-    public int movesLeft = 30;
-    public int scoreGoal = 10000;
-
     [SerializeField]
     private Board curBoard;
 
@@ -36,20 +34,21 @@ public class GameManager : BaseManager<GameManager>
             curBoard.SetupBoard();
         }
 
-        StartCoroutine("WaitForBoardRoutine", 0.5f);
-
-        if (UIManager.HasInstance)
+        StartCoroutine(WaitForBoardRoutine(0.2f, () =>
         {
-            UIManager.Instance.ShowScreen<GamePanel>();
-            var gamePanel = UIManager.Instance.GetExistScreen<GamePanel>();
-            if (gamePanel != null)
+            if (UIManager.HasInstance)
             {
-                gamePanel.levelNameText.text = sceneName;
+                UIManager.Instance.ShowScreen<GamePanel>();
+                var gamePanel = UIManager.Instance.GetExistScreen<GamePanel>();
+                if (gamePanel != null)
+                {
+                    gamePanel.levelNameText.text = sceneName;
+                }
             }
-        }
+        })); 
     }
 
-    private IEnumerator WaitForBoardRoutine(float delay = 0f)
+    public IEnumerator WaitForBoardRoutine(float delay = 0f, Action onComplete = null)
     {
         if(curBoard != null)
         {
@@ -60,6 +59,7 @@ public class GameManager : BaseManager<GameManager>
             }
         }
         yield return new WaitForSeconds(delay);
+        onComplete?.Invoke();
     }
 
     public void Restart()

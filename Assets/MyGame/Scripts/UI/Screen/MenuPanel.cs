@@ -26,7 +26,7 @@ public class MenuPanel : BaseScreen
             var messagePanel = UIManager.Instance.GetExistNotify<MessagePanel>();
             if (messagePanel != null)
             {
-                messagePanel.ShowMessage("Score Goal \n" + GameManager.Instance.scoreGoal.ToString());
+                messagePanel.ShowMessage("Score Goal \n" + LevelGoalScore.Instance.scoreGoals[0].ToString());
                 messagePanel.MoveOn();
             }
         }

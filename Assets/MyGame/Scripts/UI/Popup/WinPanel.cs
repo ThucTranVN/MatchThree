@@ -16,6 +16,10 @@ public class WinPanel : BasePopup
         {
             scoreText.text = "Your score: \n" + ScoreManager.Instance.CurrentScore.ToString();
         }
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySE(AUDIO.SE_WIN1);
+        }
     }
 
     public override void Show(object data)
@@ -25,6 +29,10 @@ public class WinPanel : BasePopup
         if (ScoreManager.HasInstance)
         {
             scoreText.text = "Your score: \n" +  ScoreManager.Instance.CurrentScore.ToString();
+        }
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySE(AUDIO.SE_WIN1);
         }
     }
 

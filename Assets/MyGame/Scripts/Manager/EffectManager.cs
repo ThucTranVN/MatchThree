@@ -8,6 +8,7 @@ public class EffectManager : BaseManager<EffectManager>
     public GameObject breakFxPrefab;
     public GameObject doubleBreakFxPrefab;
     public GameObject bombFxPrefab;
+    public GameObject starFxPrefab;
 
     public void ClearPieceFxAt(int x, int y, int z = 0)
     {

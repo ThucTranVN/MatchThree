@@ -55,16 +55,6 @@ public class GamePiece : MonoBehaviour
         }
     }
 
-    public void ScorePoints(int multiplier = 1, int bonus = 0)
-    {
-        if (ScoreManager.HasInstance)
-        {
-            ScoreManager.Instance.AddScore(scoreValue * multiplier + bonus);
-        }
-
-        OnPlaySFX();
-    }
-
     public virtual void OnPlaySFX()
     {
         if (AudioManager.HasInstance)

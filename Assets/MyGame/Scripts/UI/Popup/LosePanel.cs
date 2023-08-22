@@ -10,7 +10,7 @@ public class LosePanel : BasePopup
     public override void Init()
     {
         base.Init();
-
+        AudioManager.Instance.PlaySE(AUDIO.SE_LOSE);
         if (ScoreManager.HasInstance)
         {
             scoreText.text = "Your score: \n" + ScoreManager.Instance.CurrentScore.ToString();
@@ -20,7 +20,7 @@ public class LosePanel : BasePopup
     public override void Show(object data)
     {
         base.Show(data);
-
+        AudioManager.Instance.PlaySE(AUDIO.SE_LOSE);
         if (ScoreManager.HasInstance)
         {
             scoreText.text = "Your score: \n" + ScoreManager.Instance.CurrentScore.ToString();
