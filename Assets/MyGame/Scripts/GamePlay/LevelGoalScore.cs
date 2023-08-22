@@ -7,6 +7,7 @@ public class LevelGoalScore : BaseManager<LevelGoalScore>
     public int scoreStarts = 0;
     public int[] scoreGoals = new int[3] { 1000, 2000, 3000 };
     public int moveLeft = 30;
+    public int timeLeft = 60;
 
     void Start()
     {

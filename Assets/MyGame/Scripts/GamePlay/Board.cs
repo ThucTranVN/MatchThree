@@ -393,8 +393,13 @@ public class Board : MonoBehaviour
                                 if (UIManager.HasInstance && GameManager.Instance.IsGameOver)
                                 {
                                     UIManager.Instance.HideAllScreens();
+                                    UIManager.Instance.ShowOverlap<FadePanel>();
+                                    var fadePanel = UIManager.Instance.GetExistOverlap<FadePanel>();
+                                    if (fadePanel != null)
+                                    {
+                                        fadePanel.Fade();
+                                    }
                                     UIManager.Instance.ShowPopup<LosePanel>(true);
-                                    
                                 }
                             }
                         }

@@ -13,8 +13,9 @@ public class MenuPanel : BaseScreen
             var fadePanel = UIManager.Instance.GetExistOverlap<FadePanel>();
             if (fadePanel != null)
             {
-                fadePanel.FadeOff(OnCompleteBtnClick);
+                fadePanel.Fade();
             }
+            OnCompleteBtnClick();
         }
     }
 

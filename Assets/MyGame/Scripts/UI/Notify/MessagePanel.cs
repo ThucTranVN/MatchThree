@@ -30,7 +30,13 @@ public class MessagePanel : BaseNotify
 
     public void MoveOff(Action onComplete = null)
     {
-        moveObj.transform.DOLocalMoveY(startValue, timeToMove).OnComplete(() =>
+        UIManager.Instance.ShowOverlap<FadePanel>();
+        var fadePanel = UIManager.Instance.GetExistOverlap<FadePanel>();
+        if (fadePanel != null)
+        {
+            fadePanel.Fade();
+        }
+        moveObj.transform.DOLocalMoveY(-startValue, timeToMove).OnComplete(() =>
         {
             onComplete?.Invoke();
         });

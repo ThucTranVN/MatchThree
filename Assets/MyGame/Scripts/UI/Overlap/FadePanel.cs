@@ -8,23 +8,31 @@ using System;
 public class FadePanel : BaseOverlap
 {
     public Image fadeImg;
-    public float solidAlpha = 1f;
-    public float clearAlpha = 0f;
-    public float delay = 0f;
-    public float timeToFade = 1f;
 
-    public void FadeOn(Action onComplete = null)
+    public override void Show(object data)
     {
-        fadeImg.DOFade(solidAlpha, timeToFade).OnComplete(() =>
+        base.Show(data);
+    }
+
+    public void Fade(float timeToFade = 0.5f, Action onComplete = null)
+    {
+        FadeOn(timeToFade,() =>
         {
-            this.Hide();
+            FadeOff(timeToFade,onComplete);
+        });
+    }
+
+    private void FadeOn(float timeToFade, Action onComplete = null)
+    {
+        fadeImg.DOFade(0.5f, timeToFade).OnComplete(() =>
+        {
             onComplete?.Invoke();
         });
     }
 
-    public void FadeOff(Action onComplete = null)
+    private void FadeOff(float timeToFade,Action onComplete = null)
     {
-        fadeImg.DOFade(clearAlpha, timeToFade).OnComplete(() =>
+        fadeImg.DOFade(0, timeToFade).OnComplete(() =>
         {
             this.Hide();
             onComplete?.Invoke();

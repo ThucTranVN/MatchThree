@@ -153,8 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreStarts: 0
-  scoreGoals: f4010000b0040000c4090000
+  scoreGoals: 64000000c80000002c010000
   moveLeft: 30
+  timeLeft: 30
 --- !u!4 &94830610
 Transform:
   m_ObjectHideFlags: 0

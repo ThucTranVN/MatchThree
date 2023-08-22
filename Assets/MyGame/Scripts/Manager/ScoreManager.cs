@@ -12,7 +12,6 @@ public class ScoreManager : BaseManager<ScoreManager>
     private void Start()
     {
         maxScore = LevelGoalScore.Instance.GetMaxScore();
-        Debug.Log(maxScore);
     }
 
     public void AddScore(int value)
@@ -31,6 +30,12 @@ public class ScoreManager : BaseManager<ScoreManager>
                 if (UIManager.HasInstance && GameManager.Instance.IsGameOver)
                 {
                     UIManager.Instance.HideAllScreens();
+                    UIManager.Instance.ShowOverlap<FadePanel>();
+                    var fadePanel = UIManager.Instance.GetExistOverlap<FadePanel>();
+                    if (fadePanel != null)
+                    {
+                        fadePanel.Fade();
+                    }
                     UIManager.Instance.ShowPopup<WinPanel>(true);
                 }
             })); 

@@ -5,7 +5,6 @@ using TMPro;
 
 public class WinPanel : BasePopup
 {
-
     public TextMeshProUGUI scoreText;
 
     public override void Init()
@@ -38,6 +37,7 @@ public class WinPanel : BasePopup
 
     public void OnClickOkButton()
     {
+
         if (GameManager.HasInstance)
         {
             GameManager.Instance.Restart();

@@ -60,10 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImg: {fileID: 7695646729882558848}
-  solidAlpha: 1
-  clearAlpha: 0
-  delay: 0
-  timeToFade: 2
+  timeToFade: 1
 --- !u!1 &7695646729882558854
 GameObject:
   m_ObjectHideFlags: 0

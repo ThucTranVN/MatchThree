@@ -34,7 +34,7 @@ public class GameManager : BaseManager<GameManager>
             curBoard.SetupBoard();
         }
 
-        StartCoroutine(WaitForBoardRoutine(0.2f, () =>
+        StartCoroutine(WaitForBoardRoutine(0f, () =>
         {
             if (UIManager.HasInstance)
             {
@@ -69,6 +69,6 @@ public class GameManager : BaseManager<GameManager>
 
     public void EndGame()
     {
-        isGameOver = true;
+       isGameOver = true;
     }
 }
