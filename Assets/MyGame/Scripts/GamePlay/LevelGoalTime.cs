@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGoalTime : MonoBehaviour
+public class LevelGoalTime : BaseManager<LevelGoalTime>
 {
-    // Start is called before the first frame update
-    void Start()
+    public int timeLeft = 60;
+    private int maxTime;
+    public int MaxTime => maxTime;
+
+    private void Start()
     {
-        
+        maxTime = timeLeft;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddTime(int timeValue)
     {
-        
+        timeLeft += timeValue;
+        timeLeft = Mathf.Clamp(timeLeft, 0, maxTime);
+
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.GetExistScreen<GamePanel>().UpdateTime(timeLeft);
+        }
     }
 }

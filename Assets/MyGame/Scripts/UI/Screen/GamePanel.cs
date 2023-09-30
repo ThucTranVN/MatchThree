@@ -39,7 +39,8 @@ public class GamePanel : BaseScreen
     {
         scoreText.text = ScoreManager.Instance.CurrentScore.ToString();
         moveLeftText.text = LevelGoalScore.Instance.moveLeft.ToString();
-        InitTimer(LevelGoalScore.Instance.timeLeft);
+        timeText.gameObject.SetActive(LevelGoalTime.Instance.MaxTime > 0);
+        InitTimer(LevelGoalTime.Instance.timeLeft);
         scoreMeter.SetupStars();
         countdown = CountdownRoutine();
         StartCoroutine(countdown);
@@ -72,15 +73,15 @@ public class GamePanel : BaseScreen
 
     private IEnumerator CountdownRoutine()
     {
-        while (LevelGoalScore.Instance.timeLeft > 0)
+        while (LevelGoalTime.Instance.timeLeft > 0)
         {
             isPause = GameManager.Instance.IsGameOver;
             if (isPause) StopCoroutine(countdown);
             yield return new WaitForSeconds(1f);
-            LevelGoalScore.Instance.timeLeft--;
-            UpdateTime(LevelGoalScore.Instance.timeLeft);
-            timeText.text = LevelGoalScore.Instance.timeLeft.ToString();
-            if (LevelGoalScore.Instance.timeLeft <= 0)
+            LevelGoalTime.Instance.timeLeft--;
+            UpdateTime(LevelGoalTime.Instance.timeLeft);
+            timeText.text = LevelGoalTime.Instance.timeLeft.ToString();
+            if (LevelGoalTime.Instance.timeLeft <= 0)
             {
                 GameManager.Instance.EndGame();
                 StartCoroutine(GameManager.Instance.WaitForBoardRoutine(0.5f, () =>
@@ -107,7 +108,7 @@ public class GamePanel : BaseScreen
         timeText.text = maxTime.ToString();
     }
 
-    private void UpdateTime(int curTime)
+    public void UpdateTime(int curTime)
     {
         clockImg.fillAmount = (float)curTime / (float)maxTime;
         if(curTime <= flashTImeLimit)

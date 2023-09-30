@@ -716,11 +716,19 @@ public class Board : MonoBehaviour
                 {
                     bonus = 20;
                 }
+
                 if (ScoreManager.HasInstance)
                 {
                     ScoreManager.Instance.ScorePoint(piece, scoreMultiplier, bonus);
+
+                    TimeBonus timeBonus = piece.GetComponent<TimeBonus>();
+
+                    if(timeBonus != null)
+                    {
+                        LevelGoalTime.Instance.AddTime(timeBonus.bonusValue);
+                        Debug.Log($"BOARD adding time bonus from {piece.name} with {timeBonus.bonusValue} secconds"); ;
+                    }
                 }
-                //piece.ScorePoints(scoreMultiplier, bonus);
 
                 if(EffectManager.HasInstance)
                 {

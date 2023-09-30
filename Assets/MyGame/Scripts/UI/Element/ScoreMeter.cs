@@ -27,7 +27,6 @@ public class ScoreMeter : MonoBehaviour
                 if(scoreStars[i] != null)
                 {
                     float newX = (sliderWidth * LevelGoalScore.Instance.scoreGoals[i] / maxScore) - (sliderWidth * 0.5f);
-                    Debug.Log(newX);
                     RectTransform starRectXform = scoreStars[i].GetComponent<RectTransform>();
                     if(starRectXform != null)
                     {
