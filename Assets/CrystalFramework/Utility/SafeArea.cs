@@ -21,6 +21,7 @@ namespace Crystal
             /// Don't use a simulated safe area - GUI will be full screen as normal.
             /// </summary>
             None,
+            NSA_iPhone14,
             /// <summary>
             /// Simulate the iPhone X and Xs (identical safe areas).
             /// </summary>
@@ -37,6 +38,7 @@ namespace Crystal
             /// Simulate the Google Pixel 3 XL using landscape right.
             /// </summary>
             Pixel3XL_LSR
+
         }
 
         /// <summary>
@@ -93,6 +95,15 @@ namespace Crystal
         {
             new Rect (0f, 0f, 1f, 2789f / 2960f),  // Portrait
             new Rect (171f / 2960f, 0f, 2789f / 2960f, 1f)  // Landscape
+        };
+
+        /// <summary>
+        /// Normalised safe areas for Pixel 3 XL using landscape right. Absolute values and aspect ratio same as above.
+        /// </summary>
+        Rect[] NSA_IPHONE14_PRO = new Rect[]
+        {
+            new Rect (0f, 0f, 1f, 1179f / 2556f),  // Portrait
+            new Rect (132f / 2556f, 0f, 1179f / 2556f, 1f)  // Landscape
         };
         #endregion
 
@@ -151,6 +162,12 @@ namespace Crystal
 
                 switch (Sim)
                 {
+                    case SimDevice.NSA_iPhone14:
+                        if (Screen.height > Screen.width)  // Portrait
+                            nsa = NSA_IPHONE14_PRO[0];
+                        else  // Landscape
+                            nsa = NSA_IPHONE14_PRO[1];
+                        break;
                     case SimDevice.iPhoneX:
                         if (Screen.height > Screen.width)  // Portrait
                             nsa = NSA_iPhoneX[0];
